@@ -26,7 +26,6 @@
 #include <libopencm3/stm32/f2/rcc.h>
 #include <libopencm3/stm32/f2/dma.h>
 #include <libopencm3/stm32/f2/timer.h>
-#include "hw/leds.h"
 
 #include "swift_nap_io.h"
 #include "track.h"
@@ -48,8 +47,9 @@ void swift_nap_setup()
 {
   /* Setup the FPGA_PROGRAM_B line output */
   RCC_AHB1ENR |= RCC_AHB1ENR_IOPCEN;
-	//gpio_mode_setup(GPIOC, GPIO_MODE_OUTPUT, GPIO_PUPD_PULLUP, GPIO12);
-  //gpio_set(GPIOC, GPIO12);
+  gpio_set(GPIOC, GPIO12);
+	gpio_mode_setup(GPIOC, GPIO_MODE_OUTPUT, GPIO_PUPD_PULLUP, GPIO12);
+  gpio_set(GPIOC, GPIO12);
   /* Setup the FPGA_DONE line input*/
 	gpio_mode_setup(GPIOC, GPIO_MODE_INPUT, GPIO_PUPD_NONE, GPIO1);
   /* Setup PA2 - FPGA logic reset */
@@ -57,9 +57,8 @@ void swift_nap_setup()
 	gpio_mode_setup(GPIOA, GPIO_MODE_OUTPUT, GPIO_PUPD_NONE, GPIO2);
   gpio_clear(GPIOA, GPIO2);
   
-  //wait until FPGA_DONE goes high to make sure FPGA is configured
   //swift_nap_configure();
-  while(!(gpio_get(GPIOC,GPIO1))); 
+  while(!(gpio_get(GPIOC,GPIO1))); //wait until FPGA_DONE goes high to make sure FPGA is configured
   //swift_nap_reset();
 
   /* Initialise the SPI peripheral. 
@@ -78,6 +77,7 @@ void swift_nap_setup()
   exti_setup();
 }
 
+//currently resets DCMs inside FPGA - should only be used prior to switching clocks
 void swift_nap_reset()
 {
   //Strobe logical RESET pin high
