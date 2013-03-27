@@ -620,6 +620,12 @@ void xfer_dna_hash(){
 //  printf("\n");
 }
 
+void set_nap_fifo_direction(u8 direction){
+  u8 temp[1];
+  temp[0] = direction;
+  swift_nap_xfer_blocking(SPI_ID_FIFO_DIRECTION,1,temp,temp);
+}
+
 void swift_nap_callbacks_setup(){
   static msg_callbacks_node_t swift_nap_dna_node;
   debug_register_callback(MSG_NAP_DEVICE_DNA, &get_nap_dna_callback, &swift_nap_dna_node);

@@ -57,18 +57,21 @@ int main(void)
 
   printf("\n\nFirmware info - git: " GIT_VERSION ", built: " __DATE__ " " __TIME__ "\n\r");
   printf("--- TIMING STROBE TEST ---\n\r");
+  
+  set_nap_fifo_direction(FIFO_DIRECTION_GRABBER);
+//  set_nap_fifo_direction(FIFO_DIRECTION_PUSHER);
 
-  u32 tcs;
-  u32 tcls;
+  u32 tc;
+  u32 tcl;
   u32 strobe_offset = 2000;
 
-  tcs = timing_count();
-  acq_schedule_load(tcs + strobe_offset);
-  tcls = timing_count_latched();
+  tc = timing_count();
+  acq_schedule_load(tc + strobe_offset);
+  tcl = timing_count_latched();
 
-  printf("timing_count[%d]          = %u\n", 0, (unsigned int)tcs);
-  printf("timing_count_latched[%d]  = %u\n", 0, (unsigned int)tcls);
-  printf("difference = %u\n", (unsigned int)(tcls-tcs));
+  printf("timing_count[%d]          = %u\n", 0, (unsigned int)tc);
+  printf("timing_count_latched[%d]  = %u\n", 0, (unsigned int)tcl);
+  printf("difference = %u\n", (unsigned int)(tcl-tc));
   
   led_off(LED_GREEN);
   led_on(LED_RED);
