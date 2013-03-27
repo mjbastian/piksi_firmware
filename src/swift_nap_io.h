@@ -46,6 +46,7 @@
 #define TRACK_PHASE_OFFSET  0x03
 #define TRACK_CODE_OFFSET   0x04
 
+#define SPI_ID_FIFO_DIRECTION 0xF7
 #define SPI_ID_TIMING_COMPARE 0xF8
 #define SPI_ID_TIMING_COUNT 0xF9
 #define SPI_ID_TIMING_COUNT_LATCH 0xFA
@@ -128,5 +129,7 @@ void cw_read_corr_blocking(corr_t* corrs);
 void get_nap_dna(u8 dna[]);
 u8 get_nap_hash_status();
 void xfer_dna_hash();
+
+void set_nap_fifo_direction(u8 direction);
 
 #endif
