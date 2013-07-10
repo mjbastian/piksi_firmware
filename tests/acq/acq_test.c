@@ -28,7 +28,33 @@
 int main(void)
 {
 
-  init();
+  /* Delay on start-up as some programmers reset the STM twice. */
+  for (u32 i = 0; i < 600000; i++)
+    __asm__("nop");
+
+  led_setup();
+
+  led_off(LED_GREEN);
+  led_off(LED_RED);
+
+  nap_setup();
+  nap_reset();
+
+  rcc_clock_setup_hse_3v3(&hse_16_368MHz_in_130_944MHz_out_3v3);
+
+  led_on(LED_GREEN);
+  led_on(LED_RED);
+
+  sbp_setup(1);
+
+  m25_setup();
+
+  // Something weird with start up conditions here...sometimes it works,
+  // sometimes it doesn't
+
+//  while (!(nap_conf_done() && nap_hash_rd_done())) ;
+
+//  init();
 
   printf("\n\nFirmware info - git: " GIT_VERSION ", built: " __DATE__ " " __TIME__ "\n\r");
   printf("--- ACQ TEST ---\n\r");
