@@ -61,16 +61,16 @@ void max2769_setup(void)
                 MAX2769_CONF1_ILNA2(3) |
                 MAX2769_CONF1_ILO(3) |
                 MAX2769_CONF1_IMIX(3) |
-                MAX2769_CONF1_MIXPOLE_13MHZ |
-//                MAX2769_CONF1_MIXPOLE_36MHZ |
+//                MAX2769_CONF1_MIXPOLE_13MHZ |
+                MAX2769_CONF1_MIXPOLE_36MHZ |
                 MAX2769_CONF1_MIXEN |
                 MAX2769_CONF1_ANTEN |
                 //MAX2769_CONF1_FCEN(7) |  /* 1 MHz IF filter center freq. */
                 //MAX2769_CONF1_FCEN(43) | /* 2 Mhz IF filter center freq. */
 //                MAX2769_CONF1_FCEN(21) |   /* 4 Mhz IF filter center freq. */
 //                MAX2769_CONF1_FCEN(42) | /* 8 Mhz IF filter center freq. */
-//                MAX2769_CONF1_FBW_18MHZ |
-                MAX2769_CONF1_FBW_8MHZ |
+                MAX2769_CONF1_FBW_18MHZ |
+//                MAX2769_CONF1_FBW_8MHZ |
 //                MAX2769_CONF1_FBW_4_2MHZ |
 //                MAX2769_CONF1_FBW_2_5MHZ |
                 MAX2769_CONF1_F3OR5_5 |
@@ -85,8 +85,8 @@ void max2769_setup(void)
                 MAX2769_CONF2_AGCMODE_INDEP |
 //                MAX2769_CONF2_AGCMODE_LOCKED |
                 MAX2769_CONF2_FORMAT_SIGN_MAG |
-                MAX2769_CONF2_BITS_1 |
-//                MAX2769_CONF2_BITS_2 |
+//                MAX2769_CONF2_BITS_1 |
+                MAX2769_CONF2_BITS_2 |
 //                MAX2769_CONF2_BITS_3 |
                 MAX2769_CONF2_DRVCFG_CMOS |
                 MAX2769_CONF2_LOEN
@@ -135,7 +135,10 @@ void max2769_setup(void)
 //                MAX2769_DIV_NDIV(1528) |  /* 12 * 1.023 MHz IF */
 //                MAX2769_DIV_NDIV(1526) |  /* 14 * 1.023 MHz IF */
 //                MAX2769_DIV_NDIV(1525) |  /* 15 * 1.023 MHz IF */
-                MAX2769_DIV_NDIV(1566) | /* GLONASS 1602-1.023*1566 center */
+//                MAX2769_DIV_NDIV(1558) | /* GLONASS 1602-1.023*1558 center */
+                MAX2769_DIV_NDIV(1554) | /* GLONASS 1602-1.023*1554 center */
+//                MAX2769_DIV_NDIV(1562) | /* GLONASS 1602-1.023*1562 center */
+//                MAX2769_DIV_NDIV(1566) | /* GLONASS 1602-1.023*1566 center */
                 MAX2769_DIV_RDIV(16)
                 );
 
